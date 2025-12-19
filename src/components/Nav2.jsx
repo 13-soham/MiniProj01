@@ -9,10 +9,10 @@ const Nav2 = () => {
         <div>
             <h2 className='text-3xl font-[poppins] font-bold my-1'>Catagory</h2>
             <ul className='flex flex-col gap-1 bg-amber-100 my-2'>
-                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Men<span><i class="ri-men-line"></i></span></h4>
-                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Women<span><i class="ri-women-line"></i></span></h4>
-                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Kids<span><i class="ri-bluesky-line"></i></span></h4>
-                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Genz<span><i class="ri-zzz-line"></i></span></h4>
+                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Men<span><i className="ri-men-line"></i></span></h4>
+                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Women<span><i className="ri-women-line"></i></span></h4>
+                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Kids<span><i className="ri-bluesky-line"></i></span></h4>
+                <h4 className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>Genz<span><i className="ri-zzz-line"></i></span></h4>
             </ul>
         </div>
     </div>

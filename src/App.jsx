@@ -7,7 +7,7 @@ import Details from '../pages/Details';
 
 const App = () => {
   return (
-    <div className='h-screen w-full'>
+    <div className='min-h-screen w-full pb-1'>
       <Nav1 />
       <Routes>
         <Route path='/' element={<Structure />}/>
