@@ -1,37 +1,61 @@
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom'
+import { ProductContext } from '../src/utils/ProductContext';
+import axios from '../src/utils/Axios';
+import Loading from './Loading';
 
 const Details = () => {
-    const params = useParams();
-  return (
-    <div className='h-full w-full px-30 py-15 flex items-center gap-10'>
+    // const [products] = useContext(ProductContext);
+    const { id } = useParams();
+    const [SingleProduct, setSingleProduct] = useState(null);
 
-        <h1 className='absolute top-63 left-90 z-50 text-xl text-black font-[work sans]'>men's clothing</h1>
-        <div className='h-[75%] w-[40%]  overflow-hidden'>
-            <img className='h-full w-full object-cover px-7 py-4 hover:scale-110 transition-all duration-200 cursor-zoom-in' src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png" alt="product" />
-        </div>
+    const getSingleProduct = async () => {
+        try {
+            let {data} = await axios.get(`/products/${id}`);
+            // console.log(data);
+            setSingleProduct(data);
+        }
+        catch (err) {
+            console.warn(err.message);
+        }
+    }
 
-        <div className='flex flex-col justify-between gap-3 mb-15'>
-            <h1 className='text-3xl font-bold font-[monument]'>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h1>
-            <p className='text-xl font-light text-gray-600 opacity-90'>Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</p>
+    useEffect(()=>{
+        getSingleProduct();
+    },[id]);
 
-            <div className='flex gap-1 border border-gray-700 px-3 py-1 w-1/5'>
-                <h3>4.3</h3>
-                <i class="ri-star-s-fill"></i>
-                <h1>|</h1>
-                <h3>445 Ratings</h3>
+    // console.log(SingleProduct);
+
+    return SingleProduct ? (
+        <div className='h-full w-full px-30 py-15 flex items-center gap-15'>
+
+            <h1 className='absolute top-63 left-90 z-50 text-xl text-white mix-blend-difference drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] font-[work sans]'>{SingleProduct.category}</h1>
+            <div className='h-130 w-150 overflow-hidden'>
+                <img className='h-full w-full object-contain px-7 py-4 hover:scale-110 transition-all duration-200 cursor-zoom-in' src={`${SingleProduct.image}`} alt="product" />
             </div>
 
-            <hr className='py-3 mt-2' />
-            <h3 className='text-3xl font-extrabold'>Rs : 109.95</h3>
-            <p className='text-green-600'>inclusive of all taxes</p>
-            <div className='flex items-center gap-3'>
-                <Link><button className='buttonProp bg-blue-300 cursor-pointer transition-transform active:scale-95 duration-150'>Edit</button></Link>
-                <Link><button className='buttonProp bg-red-300 cursor-pointer transition-transform active:scale-95 duration-150'>Delete</button></Link>
-            </div>
+            <div className='px-20 py-10 h-full w-full flex flex-col justify-between gap-3 mb-15'>
+                <h1 className='text-3xl font-bold font-[monument]'>{SingleProduct.title}</h1>
+                <p className='text-md font-light text-gray-600 opacity-90'>{SingleProduct.description}</p>
 
+                <div className='flex gap-1 border border-gray-700 px-3 py-1 w-1/4'>
+                    <h3>{SingleProduct.rating.rate}</h3>
+                    <i className="ri-star-s-fill"></i>
+                    <h1>|</h1>
+                    <h3>{SingleProduct.rating.count} Ratings</h3>
+                </div>
+
+                <hr className='py-3 mt-2' />
+                <h3 className='text-3xl font-extrabold'>Rs : {(SingleProduct.price*90).toFixed(2)}</h3>
+                <p className='text-green-600'>inclusive of all taxes</p>
+                <div className='flex items-center gap-3'>
+                    <Link><button className='buttonProp bg-blue-300 cursor-pointer transition-transform active:scale-95 duration-150'>Edit</button></Link>
+                    <Link><button className='buttonProp bg-red-300 cursor-pointer transition-transform active:scale-95 duration-150'>Delete</button></Link>
+                </div>
+
+            </div>
         </div>
-    </div>
-  )
+    ) : (<Loading />)
 }
 
 export default Details
