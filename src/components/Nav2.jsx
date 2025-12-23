@@ -13,7 +13,12 @@ const Nav2 = () => {
     })
   )] : [];
 
-  let iconArr = [<i class="ri-men-line"></i>,<i class="ri-jewelry-line"></i>,<i class="ri-tv-line"></i>,<i class="ri-women-line"></i>, ];
+  const iconMap = {
+    "men's clothing" : <i className="ri-men-line"></i>,
+    "jewelery" : <i className="ri-jewelry-line"></i>,
+    "electronics": <i className="ri-tv-line"></i>,
+    "women's clothing": <i className="ri-women-line"></i>
+  };
 
   return (
     <div className='h-full w-1/6 bg-zinc-200 px-7 py-3 flex flex-col sticky top-0'>
@@ -22,9 +27,12 @@ const Nav2 = () => {
       <div>
         <h2 className='text-3xl font-[poppins] font-bold my-1'>Catagory</h2>
         <div className='flex flex-col gap-1 bg-amber-100 my-2'>
+          <Link to="/" className='px-3 py-1.5 flex gap-2 text-md text-red-400 cursor-pointer'><i className="ri-store-2-line"></i>All Products</Link>
+        </div>
+        <div className='flex flex-col gap-1 bg-amber-100 my-2'>
           {filterProd.map((elem, id)=>{
             return(
-              <Link key={id} to={`/?category=${elem}`} className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>{iconArr[id]}{elem}</Link>
+              <Link key={id} to={`/?category=${elem}`} className='px-3 py-1.5 flex gap-2 text-md cursor-pointer'>{iconMap[elem]}{elem}</Link>
             )
           })}
         </div>

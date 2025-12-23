@@ -7,7 +7,7 @@ const Context = ({ children }) => {
 
     const getProducts = async () => {
         try {
-            let { data } = await axios("/products");   // {data} means I extract "data" from response object, like res.data
+            let { data } = await axios.get("/products");   // {data} means I extract "data" from response object, like res.data
             // console.log(data);
             setProducts(data);
         }
