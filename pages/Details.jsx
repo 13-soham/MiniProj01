@@ -5,7 +5,7 @@ import axios from '../src/utils/Axios';
 import Loading from './Loading';
 
 const Details = () => {
-    // const [products] = useContext(ProductContext);
+    const [products] = useContext(ProductContext);
     const { id } = useParams();
     const [SingleProduct, setSingleProduct] = useState(null);
 
@@ -21,8 +21,18 @@ const Details = () => {
     }
 
     useEffect(()=>{
-        getSingleProduct();
-    },[id]);
+        if(!products || products.length == 0) return;
+        const localStorageProducts = products.find((p)=>{
+            return p.id == Number(id) && p.id > 1000000
+        });
+
+        if(localStorageProducts){
+            setSingleProduct(localStorageProducts);  // localStorage Product call
+        }
+        else{
+            getSingleProduct();  // API call
+        }
+    },[products, id]);
 
     // console.log(SingleProduct);
 

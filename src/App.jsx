@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Structure from './components/Structure';
 import { Routes, Route } from 'react-router-dom';
 import Details from '../pages/Details';
+import Create from '../pages/Create';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Structure />}/>
         <Route path='/details/:id' element={<Details />}/>
+        <Route path='/create' element={<Create/>}/>
       </Routes>
     </div>
   )

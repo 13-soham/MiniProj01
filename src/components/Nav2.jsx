@@ -22,7 +22,7 @@ const Nav2 = () => {
 
   return (
     <div className='h-full w-1/6 bg-zinc-200 px-7 py-3 flex flex-col sticky top-0'>
-      <a className='w-4/5 px-5 py-2 text-center font-light text-blue-800 border-2 border-blue-600 rounded-md' href="/create">Add Product</a>
+      <Link to="/create" className='w-4/5 px-5 py-2 text-center font-light text-blue-800 border-2 border-blue-600 rounded-md'>Add Product</Link>
       <hr className='w-[90%] my-3' />
       <div>
         <h2 className='text-3xl font-[poppins] font-bold my-1'>Catagory</h2>
