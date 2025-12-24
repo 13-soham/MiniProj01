@@ -5,15 +5,18 @@ import { BrowserRouter } from 'react-router-dom';
 import Context from './utils/Context.jsx';
 import AuthContext from './Auth/AuthContext.jsx';
 import SearchContext from './utils/SearchContext.jsx';
+import ThemeContext from './utils/ThemeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <AuthContext>
-    <SearchContext>
-      <Context>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Context>
-    </SearchContext>
-  </AuthContext>
+  <ThemeContext>
+    <AuthContext>
+      <SearchContext>
+        <Context>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Context>
+      </SearchContext>
+    </AuthContext>
+  </ThemeContext>
 );
