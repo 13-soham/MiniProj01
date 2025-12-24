@@ -3,10 +3,13 @@ import { Link, useLocation } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { ProductContext } from '../utils/ProductContext';
 import Loading from '../../pages/Loading';
+import { SearchQueryContext } from '../utils/SearchContext';
 
 const Home = () => {
-  // const para = useParams();
+  // search Query
+  const {Query} = useContext(SearchQueryContext);
 
+  // const para = useParams();
 
   const [products] = useContext(ProductContext);
   // console.log(products);
@@ -22,10 +25,18 @@ const Home = () => {
   const category = params.get("category");  // example → men's clothing
   // console.log(category);
 
-  const filterProducts = category ? products.filter((p) => {
+  const CategoryfilterProducts = category ? products.filter((p) => {
     return p.category === category;
   }) : products;
 
+
+  // check that product is came from searching or category selecting
+  // here title, description, category makes a lowerCase string then it search that Query has any of these or not
+  const filterProducts = Query ? CategoryfilterProducts.filter((p)=>{
+    return(
+      `${p.title}${p.description}${p.category}`.toLowerCase().includes(Query.toLowerCase())
+    )
+  }): CategoryfilterProducts;
 
 
 
