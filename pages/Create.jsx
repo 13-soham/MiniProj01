@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import { ProductContext } from '../src/utils/ProductContext';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { LogContext } from '../src/Auth/AuthContext';
 
 const Create = () => {
     const [Product, setProduct] = useContext(ProductContext);
+    const {User} = useContext(LogContext);
     const navigate = useNavigate();
 
     const [Form, setForm] = useState({
@@ -22,6 +24,13 @@ const Create = () => {
     function SubmitHandler(e) {
         e.preventDefault();
         // console.log(Form);
+
+        // redirect to login, if user is not log in
+        if(!User){
+            toast.error("You need to log in first");
+            navigate("/login");
+            return;
+        }
 
         if(Form.image.trim() === "" || Form.title.trim() === ""){
             alert("Pls fill the Title or Image URL first");

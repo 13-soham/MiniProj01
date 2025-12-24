@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Details from '../pages/Details';
 import Create from '../pages/Create';
 import Toast from './utils/Toast';
+import Login from './Auth/Login';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Nav1 />
       <Routes>
         <Route path='/' element={<Structure />}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/details/:id' element={<Details />}/>
         <Route path='/create' element={<Create/>}/>
       </Routes>
