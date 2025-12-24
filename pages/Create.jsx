@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { ProductContext } from '../src/utils/ProductContext';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Create = () => {
     const [Product, setProduct] = useContext(ProductContext);
@@ -22,6 +23,16 @@ const Create = () => {
         e.preventDefault();
         // console.log(Form);
 
+        if(Form.image.trim() === "" || Form.title.trim() === ""){
+            alert("Pls fill the Title or Image URL first");
+            return;
+        }
+
+        if(!(Form.category === "men's clothing") && !(Form.category === "women's clothing") && !(Form.category === "jewelery") && !(Form.category === "electronics")){
+            alert("Category does not exist");
+            return;
+        }
+
         const SendProduct = {
             id: Date.now(), // unique ID
             ...Form,
@@ -35,6 +46,8 @@ const Create = () => {
         setProduct((previous) => {
             return [...previous, SendProduct];
         });
+
+        toast.success("Product Added");
         navigate("/");
     }
 
