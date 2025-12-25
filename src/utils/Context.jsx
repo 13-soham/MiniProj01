@@ -26,6 +26,10 @@ const Context = ({ children }) => {
         getProducts();
     }, []);
 
+    useEffect(() => {
+        getProducts();
+    }, [Products]);
+
     useEffect(()=>{
 
         if(firstRender.current){
