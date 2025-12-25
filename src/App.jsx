@@ -7,10 +7,12 @@ import Details from '../pages/Details';
 import Create from '../pages/Create';
 import Toast from './utils/Toast';
 import Login from './Auth/Login';
+import About from '../pages/About';
+import Footer from '../pages/Footer';
 
 const App = () => {
   return (
-    <div className='min-h-screen w-full pb-1'>
+    <div className='min-h-screen w-full'>
       <Toast/>
       <Nav1 />
       <Routes>
@@ -18,6 +20,7 @@ const App = () => {
         <Route path='/login' element={<Login/>}/>
         <Route path='/details/:id' element={<Details />}/>
         <Route path='/create' element={<Create/>}/>
+        <Route path='/about' element={<About/>}/>
       </Routes>
     </div>
   )
